@@ -1,0 +1,21 @@
+{
+    "name": "48530/generator",
+    "description": "composer install",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "48530\\Generator\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mario201087",
+            "email": "mariusz201087@tlen.pl"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "twilio/sdk": "^7.13"
+    }
+}

@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -43,3 +44,40 @@ try {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
 ?>
+=======
+require __DIR__ . '/vendor/autoload.php';  // Make sure to include the Twilio PHP library
+
+use Twilio\Rest\Client;
+
+// Check if the form was submitted and if it's a POST request
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get form data
+    $toPhoneNumber = $_POST['recipient']; // Assuming the phone number is passed as "recipient"
+    $messageBody = $_POST['content']; // Assuming the message body is passed as "content"
+
+    // Your Twilio credentials
+    $accountSid = 'AC79738bf14525ae339c9f2d5e70fee564';  // Replace with your Twilio Account SID
+    $authToken  = 'c8f5cb9191c6b40da9dabdb2415ac5dc';  // Replace with your Twilio Auth Token
+    $twilio = new Client($accountSid, $authToken);
+
+    // Update with your actual Twilio phone number
+    $fromPhoneNumber = "+12407880303";
+
+    // Send SMS message
+    try {
+        $twilio->messages->create(
+            $toPhoneNumber,
+            [
+                "body" => $messageBody,
+                "from" => $fromPhoneNumber
+            ]
+        );
+        echo 'SMS has been sent';
+    } catch (Exception $e) {
+        echo "SMS could not be sent. Twilio Error: {$e->getMessage()}";
+    }
+} else {
+    echo "Invalid request method.";
+}
+?>
+>>>>>>> 8b042ad (Commit message describing your changes)
